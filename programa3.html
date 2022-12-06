@@ -6,22 +6,36 @@
     var cores = ['blue', 'red', 'green'];
     var cor = 0;
     var raio = 10;
+    var isPressed = false;
 
     pincel.fillStyle = 'grey';
     pincel.fillRect(0, 0, 600, 400);
 
     function desenhaCirculo(evento) {
-        var x = evento.pageX - tela.offsetLeft;
-        var y = evento.pageY - tela.offsetTop;
-        pincel.fillStyle = cores[cor];
-        pincel.beginPath();
-        if(evento.shiftKey)
-            raio += 10;
-        pincel.arc(x, y, raio, 0, 2 * 3.14);
-        pincel.fill();
-        console.log(x + ", " + y);
+        if(isPressed) {
+            var x = evento.pageX - tela.offsetLeft;
+            var y = evento.pageY - tela.offsetTop;
+            pincel.fillStyle = cores[cor];
+            pincel.beginPath();
+            if (evento.shiftKey) {
+                if (raio < 29)
+                    raio += 10
+                else
+                    raio = 40;
+            }
+            if (evento.altKey) {
+                if (raio > 15)
+                    raio -= 5;
+                else
+                    raio = 10;
+            }
+
+            pincel.arc(x, y, raio, 0, 2 * 3.14);
+            pincel.fill();
+            console.log(x + ", " + y);
+        }
     }
-    tela.onclick = desenhaCirculo;
+    tela.onmousemove = desenhaCirculo;
 
     function mudaCor() {
 
@@ -30,4 +44,15 @@
     }
 
     tela.oncontextmenu = mudaCor;
+
+    function clicaMouse() {
+        isPressed = true;
+    }
+
+    function soltaMouse() {
+        isPressed = false;
+    }
+
+    tela.onmousedown = function() { isPressed = true; };
+    tela.onmouseup = function() { isPressed = false; };
 </script>
