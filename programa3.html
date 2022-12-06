@@ -14,7 +14,10 @@
         var y = evento.pageY - tela.offsetTop;
         pincel.fillStyle = cores[cor];
         pincel.beginPath();
-        pincel.arc(x, y, 10, 0, 2 * 3.14);
+        if(evento.shiftKey)
+            pincel.arc(x, y, 30, 0, 2 * 3.14);
+        else
+            pincel.arc(x, y, 10, 0, 2 * 3.14);
         pincel.fill();
         console.log(x + ", " + y);
     }
