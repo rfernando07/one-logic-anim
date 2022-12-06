@@ -20,15 +20,23 @@
     }
 
     var x = 20;
+    //var going = true;
+    var sentido = 1;
 
     function atualizaTela() {
 
         limpaTela();
         desenhaCirculo(x, 20, 10);
-        x++;
+        if (x >= 590) {
+            sentido = -1
+        }
+        if(x <= 20) {
+            sentido = 1;
+        }
+        x += sentido;
     }
 
-    setInterval(atualizaTela, 10);
+    setInterval(atualizaTela, 5);
 
 
 
