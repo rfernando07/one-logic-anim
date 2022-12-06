@@ -39,19 +39,11 @@
 
     function mudaCor() {
 
-        cor = cor == 2 ? 0 : ++cor;
+        cor = cor === 2 ? 0 : ++cor;
         return false;
     }
 
     tela.oncontextmenu = mudaCor;
-
-    function clicaMouse() {
-        isPressed = true;
-    }
-
-    function soltaMouse() {
-        isPressed = false;
-    }
 
     tela.onmousedown = function() { isPressed = true; };
     tela.onmouseup = function() { isPressed = false; };
