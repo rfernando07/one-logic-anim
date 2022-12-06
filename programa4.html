@@ -2,8 +2,17 @@
 
 <script>
 
+    var esquerda = 37;
+    var cima = 38;
+    var direita = 39;
+    var baixo = 40;
+
+    var taxa = 10;
+
     var tela = document.querySelector('canvas');
     var pincel = tela.getContext('2d');
+    var x = 20;
+    var y = 20;
     pincel.fillStyle = 'lightgray';
     pincel.fillRect(0, 0, 600, 400);
 
@@ -16,40 +25,36 @@
     }
 
     function limpaTela() {
+
         pincel.clearRect(0, 0, 600, 400);
     }
-
-    var x = 20;
-    var raio = 10;
-    //var going = true;
-    var sentidoMov = 1;
-    var sentidoCresc = 1;
 
     function atualizaTela() {
 
         limpaTela();
-        desenhaCirculo(x, 40, raio);
-
-        if(x >= 590) {
-            sentidoMov = -1
-        }
-        if(x <= 20) {
-            sentidoMov = 1;
-        }
-        x += sentidoMov;
-
-        if(raio >= 30) {
-            sentidoCresc = -1;
-        }
-        if(raio <= 20) {
-            sentidoCresc = 1
-        }
-        raio += sentidoCresc;
+        desenhaCirculo(x, y, 10);
     }
 
     setInterval(atualizaTela, 20);
 
+    function leDoTeclado(evento) {
+        switch(evento.keyCode) {
+            case cima:
+                y -= taxa;
+                break;
+            case baixo:
+                y += taxa;
+                break;
+            case esquerda:
+                x -= taxa;
+                break;
+            case direita:
+                x += taxa;
+                break;
+        }
+    }
 
+    document.onkeydown = leDoTeclado;
 
 
 </script>
