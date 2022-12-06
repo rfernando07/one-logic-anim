@@ -20,23 +20,34 @@
     }
 
     var x = 20;
+    var raio = 10;
     //var going = true;
-    var sentido = 1;
+    var sentidoMov = 1;
+    var sentidoCresc = 1;
 
     function atualizaTela() {
 
         limpaTela();
-        desenhaCirculo(x, 20, 10);
-        if (x >= 590) {
-            sentido = -1
+        desenhaCirculo(x, 40, raio);
+
+        if(x >= 590) {
+            sentidoMov = -1
         }
         if(x <= 20) {
-            sentido = 1;
+            sentidoMov = 1;
         }
-        x += sentido;
+        x += sentidoMov;
+
+        if(raio >= 30) {
+            sentidoCresc = -1;
+        }
+        if(raio <= 20) {
+            sentidoCresc = 1
+        }
+        raio += sentidoCresc;
     }
 
-    setInterval(atualizaTela, 5);
+    setInterval(atualizaTela, 20);
 
 
 
